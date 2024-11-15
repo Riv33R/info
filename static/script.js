@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById("employeeTable");
     const headers = table.tHead.rows[0].cells; // Получаем ячейки заголовков
@@ -24,4 +23,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-</script>
