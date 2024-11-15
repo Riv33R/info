@@ -39,6 +39,17 @@ td {
     height: 13px;
 }
 
+.sortable {
+    pointer-events: auto; /* Активирует клики для заголовков */
+    cursor: pointer;      /* Добавляет курсор указателя */
+    background-color: #dedede; /* Легкий фон для визуализации */
+    user-select: none;    /* Отключает выделение текста */
+    border-radius: 5px;
+}
+
+.sortable:hover {
+    background-color: #c5c5c5; /* Подсветка при наведении */
+}
 
 
 @media screen and (max-width: 645px){
