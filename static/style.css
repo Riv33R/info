@@ -1,5 +1,6 @@
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
     background-color: #fff;
 }
 
@@ -13,10 +14,15 @@ html {
     display: flex;
     justify-content: center;
     border-radius: 15px;
+    pointer-events: none;
+    background-color: rgba(154, 201, 219, 0.582);
+    box-shadow: 1px 1.5px 3px #333;
 }
 
 td {
     width: 50vh;
     border: 1px solid #333;
     border-radius: 10px;
+    box-shadow: 1px 1.5px 3px #333;
+    background-color: #fff;
 }
