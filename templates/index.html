@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499799/telephone-number.svg">
+    <title>Справочник</title>
+</head>
+
+<body>
+    <h1 class="titletop">Справочник</h1>
+    <h3 class="titletop">сотрудников МОУ "ДСШ" № 1</h3>
+    <div class="tabl">
+        <table>
+            {% for record in records %}
+            {% if record['name'] and record['jobtitle'] and record['phone'] and record['phone'] is not none %}
+            <tr>
+                <th>ФИО</th>
+                <th>Должность</th>
+                <th>Номер</th>
+            </tr>
+            <tr>
+                <td>{{ record['name'] }}</td>
+                <td>{{ record['jobtitle'] }}</td>
+                <td><a href="tel:+37377877777"><img class="phonenum" src="https://www.svgrepo.com/show/499799/telephone-number.svg" alt="phone"></a> {{ '{:.0f}'.format(record['phone'] | float) }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>
