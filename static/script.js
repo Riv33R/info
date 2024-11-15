@@ -1,4 +1,3 @@
-<script>
 function sortTable(columnIndex) {
     const table = document.getElementById("employeeTable");
     const rows = Array.from(table.tBodies[0].rows); // Получить строки тела таблицы
@@ -17,4 +16,3 @@ function sortTable(columnIndex) {
     const tbody = table.tBodies[0];
     rows.forEach(row => tbody.appendChild(row));
 }
-</script>
