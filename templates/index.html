@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ record['name'] }}</td>
                 <td>{{ record['jobtitle'] }}</td>
-                <td><a href="tel:+37377877777"><img class="phonenum" src="https://www.svgrepo.com/show/499799/telephone-number.svg" alt="phone"></a> {{ '{:.0f}'.format(record['phone'] | float) }}</td>
+                <td><a href="tel:+373{{ '{:.0f}'.format(record['phone'] | float) }}"><img class="phonenum" src="https://www.svgrepo.com/show/499799/telephone-number.svg" alt="phone"></a> {{ '{:.0f}'.format(record['phone'] | float) }}</td>
             </tr>
             {% endif %}
             {% endfor %}
