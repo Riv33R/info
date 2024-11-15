@@ -20,6 +20,8 @@ html {
     pointer-events: none;
     background-color: rgba(154, 201, 219, 0.582);
     box-shadow: 1px 1.5px 3px #333;
+    max-width: 940px;
+    min-width: 690px;
 }
 
 td {
@@ -39,10 +41,11 @@ td {
 
 
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 645px){
     .tabl{
         margin: 2rem 1rem 0 1rem;
         font-size: x-small;
+        min-width: 10vh;
     }
 
     .td {
