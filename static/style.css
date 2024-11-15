@@ -15,7 +15,7 @@ html {
     padding: 0.5rem;
     display: flex;
     justify-content: center;
-    margin: 2rem 20rem 0 20rem;
+    margin: 0 auto;
     border-radius: 15px;
     pointer-events: none;
     background-color: rgba(154, 201, 219, 0.582);
