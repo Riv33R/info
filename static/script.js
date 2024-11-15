@@ -1,18 +1,27 @@
-function sortTable(columnIndex) {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById("employeeTable");
-    const rows = Array.from(table.tBodies[0].rows); // Получить строки тела таблицы
-    const isAsc = table.dataset.sortOrder !== "asc"; // Определить направление сортировки
-    table.dataset.sortOrder = isAsc ? "asc" : "desc"; // Переключить направление
-
-    rows.sort((rowA, rowB) => {
-        const cellA = rowA.cells[columnIndex].textContent.trim().toLowerCase();
-        const cellB = rowB.cells[columnIndex].textContent.trim().toLowerCase();
-        if (cellA < cellB) return isAsc ? -1 : 1;
-        if (cellA > cellB) return isAsc ? 1 : -1;
-        return 0;
-    });
-
-    // Переместить строки в отсортированном порядке
+    const headers = table.tHead.rows[0].cells; // Получаем ячейки заголовков
     const tbody = table.tBodies[0];
-    rows.forEach(row => tbody.appendChild(row));
-}
+    const rows = Array.from(tbody.rows); // Получаем строки данных
+
+    Array.from(headers).forEach((header, columnIndex) => {
+        header.addEventListener("click", () => {
+            const isAscending = header.dataset.sortOrder !== "asc"; // Проверяем направление сортировки
+            header.dataset.sortOrder = isAscending ? "asc" : "desc";
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[columnIndex].textContent.trim().toLowerCase();
+                const cellB = rowB.cells[columnIndex].textContent.trim().toLowerCase();
+
+                if (cellA < cellB) return isAscending ? -1 : 1;
+                if (cellA > cellB) return isAscending ? 1 : -1;
+                return 0;
+            });
+
+            // Перемещаем строки в отсортированном порядке
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    });
+});
+</script>
