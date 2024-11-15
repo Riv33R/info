@@ -32,6 +32,8 @@ td {
 
 .phonenum {
     pointer-events: painted;
+    width: 13px;
+    height: 13px;
 }
 
 
@@ -44,6 +46,11 @@ td {
 
     .td {
         margin-top: 5rem;
+    }
+
+    .phonenum {
+        width: 9px;
+        height: 9px;
     }
 
 }
