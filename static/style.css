@@ -13,6 +13,7 @@ html {
     padding: 0.5rem;
     display: flex;
     justify-content: center;
+    margin: 0 20% 0 20%;
     border-radius: 15px;
     pointer-events: none;
     background-color: rgba(154, 201, 219, 0.582);
@@ -20,8 +21,8 @@ html {
 }
 
 td {
-    width: 50vh;
     border: 1px solid #333;
+    width: 50vh;
     border-radius: 10px;
     box-shadow: 1px 1.5px 3px #333;
     background-color: #fff;
