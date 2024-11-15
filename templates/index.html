@@ -16,9 +16,9 @@
     <div class="tabl">
         <table id="employeeTable">
             <tr>
-                <th class="sortable" onclick="sortTable(0)">ФИО</th>
-                <th class="sortable" onclick="sortTable(1)">Должность</th>
-                <th class="sortable" onclick="sortTable(2)">Номер</th>
+                <th>ФИО</th>
+                <th>Должность</th>
+                <th>Номер</th>
             </tr>
             {% for record in records %}
             {% if record['name'] and record['jobtitle'] and record['phone'] and record['phone'] is not none %}
