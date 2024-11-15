@@ -6,6 +6,8 @@ html {
 
 .titletop {
     text-align: center;
+    padding: auto;
+    margin: auto;
 }
 
 .tabl {
@@ -13,7 +15,7 @@ html {
     padding: 0.5rem;
     display: flex;
     justify-content: center;
-    margin: 0 20% 0 20%;
+    margin: 2rem 20rem 0 20rem;
     border-radius: 15px;
     pointer-events: none;
     background-color: rgba(154, 201, 219, 0.582);
@@ -22,8 +24,26 @@ html {
 
 td {
     border: 1px solid #333;
-    width: 50vh;
-    border-radius: 10px;
+    width: 100vh;
+    border-radius: 5px;
     box-shadow: 1px 1.5px 3px #333;
     background-color: #fff;
+}
+
+.phonenum {
+    pointer-events: painted;
+}
+
+
+
+@media screen and (max-width: 600px){
+    .tabl{
+        margin: 2rem 1rem 0 1rem;
+        font-size: x-small;
+    }
+
+    .td {
+        margin-top: 5rem;
+    }
+
 }
