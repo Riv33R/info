@@ -25,6 +25,7 @@ html {
 td {
     border: 1px solid #333;
     width: 100vh;
+    height: 45px;
     border-radius: 5px;
     box-shadow: 1px 1.5px 3px #333;
     background-color: #fff;
