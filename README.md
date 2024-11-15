@@ -13,11 +13,14 @@
 
 ```
 /
-├── static/                # Статические файлы (CSS, изображения)
+├── static/                # Статические файлы (CSS, JS)
+│   ├── script.js          # Скрипты JavaScript
+│   └── style.css          # Стили CSS
 ├── templates/             # Шаблоны HTML
+│   └── index.html         # Главная HTML-страница
 ├── app.py                 # Основной файл приложения на Flask
 ├── requirements.txt       # Список зависимостей проекта
-├── userdata.ps1           # Скрипт PowerShell (возможно, для автоматизации)
+├── userdata.ps1           # Скрипт PowerShell (для выгрузки данных пользователей из AD)
 ├── README.md              # Документация проекта
 └── .gitignore             # Исключения для Git
 ```
