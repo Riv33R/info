@@ -41,3 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  function logout() {
+    fetch('/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => {
+      window.location.href = '/';
+    }).catch(err => console.error('Ошибка при выходе:', err));
+  }
