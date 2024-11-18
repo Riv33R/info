@@ -2,49 +2,47 @@
 <html lang="en">
 
 <head>
-    <title>Вход</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="">
-    <link rel="stylesheet" href="" />
+    <script src="/static/script.js"></script>
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499764/user.svg">
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Вход</title>
 </head>
 
 <body>
-    <button style="margin: 0 0 1rem 0; float: right;" id="theme-toggle">Переключить тему</button>
-    <div class="login-container" style="border: 5px">
+    <header>
+        <div class="titletop">
+            <h1>Портал</h1>
+            <h3>МОУ "ДСШ" № 1</h3>
+        </div>
+        <div class="menu">
+            <div class="mainpagebtn btn">
+                <a class="but" href="{{ url_for('index') }}"></a>
+            </div>
+            <div class="sprav btn">
+                <a class="but" href="{{ url_for('spravka') }}"></a>
+            </div>
+            <div class="logs btn">
+                <a class="but" href="{{ url_for('logs') }}"></a>
+            </div>
+            <div class="users btn">
+                <a class="but" href="{{ url_for('users') }}"></a>
+            </div>
+            <div class="reg btn">
+                <a class="but" href="{{ url_for('register') }}"></a>
+            </div>
+        </div>
+    </header>
+    <div class="login-container">
         <h1>Вход</h1>
-        <form class="loginbox" method="POST" action="/login">
+        <form method="POST" action="/login">
             {{ form.hidden_tag() }}
             <input class="loginline" type="text" placeholder="Логин" {{ form.username }}<br>
             <input class="loginline" type="password" placeholder="Пароль" {{ form.password }}<br>
             <button type="submit" {{ form.submit() }} Вход</button>
         </form>
     </div>
-
-    <script>
-        // При загрузке страницы
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            // Проверяем, есть ли сохранённая тема
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                body.classList.add(savedTheme);
-            }
-
-            // Переключение темы
-            themeToggle.addEventListener('click', () => {
-                if (body.classList.contains('dark-theme')) {
-                    body.classList.remove('dark-theme');
-                    localStorage.setItem('theme', ''); // Очищаем тему
-                } else {
-                    body.classList.add('dark-theme');
-                    localStorage.setItem('theme', 'dark-theme'); // Сохраняем тёмную тему
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
