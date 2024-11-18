@@ -4,10 +4,20 @@ html {
     background-color: #fff;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+}
+
 .titletop {
-    text-align: center;
-    padding: auto;
-    margin: auto;
+    border-collapse: collapse;
+    text-align: left;
+    width: 200px;
+}
+
+h1,
+h3 {
+    margin: 0;
 }
 
 .tabl {
@@ -41,20 +51,70 @@ td {
 }
 
 .sortable {
-    pointer-events: auto; /* Активирует клики для заголовков */
-    cursor: pointer;      /* Добавляет курсор указателя */
-    background-color: #dedede; /* Легкий фон для визуализации */
-    user-select: none;    /* Отключает выделение текста */
+    pointer-events: auto;
+    /* Активирует клики для заголовков */
+    cursor: pointer;
+    /* Добавляет курсор указателя */
+    background-color: #dedede;
+    /* Легкий фон для визуализации */
+    user-select: none;
+    /* Отключает выделение текста */
     border-radius: 5px;
 }
 
 .sortable:hover {
-    background-color: #c5c5c5; /* Подсветка при наведении */
+    background-color: #c5c5c5;
+    /* Подсветка при наведении */
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.but {
+    display: flex;
+    width: 30px;
+    height: 30px;
+}
+
+.btn {
+    margin-left: 1rem;
+}
+
+.mainpagebtn {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499807/home-page.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sprav {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499799/telephone-number.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.logs {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499789/preview.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
-@media screen and (max-width: 645px){
-    .tabl{
+@media screen and (max-width: 645px) {
+    .tabl {
         margin: 1rem 1rem 0 1rem;
         font-size: x-small;
         min-width: 10vh;
