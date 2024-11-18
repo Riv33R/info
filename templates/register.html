@@ -1,56 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://www.svgrepo.com/show/499759/edit.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js"></script>
+    <title>Регистрация</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://www.svgrepo.com/show/499759/edit.svg" type="image/x-icon">
-  <link rel="stylesheet" href="/static/style.css">
-  <script src="/static/script.js"></script>
-  <title>Регистрация</title>
-</head>
-
-<body>
-  <header>
-    <div class="titletop">
-      <h1>Портал</h1>
-      <h3>МОУ "ДСШ" № 1</h3>
+  <body>
+    <header>
+      <div class="titletop">
+        <h1>Портал</h1>
+        <h3>МОУ "ДСШ" № 1</h3>
+      </div>
+      <div class="menu">
+        <div class="mainpagebtn btn">
+          <a class="but" href="{{ url_for('index') }}"></a>
+        </div>
+        <div class="sprav btn">
+          <a class="but" href="{{ url_for('spravka') }}"></a>
+        </div>
+        <div class="logs btn">
+          <a class="but" href="{{ url_for('logs') }}"></a>
+        </div>
+        <div class="users btn">
+          <a class="but" href="{{ url_for('users') }}"></a>
+        </div>
+        <div class="reg btn">
+          <a class="but" href="{{ url_for('register') }}"></a>
+        </div>
+      </div>
+    </header>
+    <div class="login-container">
+      <form class="loginbox" method="POST" action="{{ url_for('register') }}">
+        <h1 style="text-align: center;">Регистрация</h1>
+        {{ form.hidden_tag() }}
+        <div>
+          <input
+            class="loginline"
+            type="text"
+            placeholder="Логин"
+            {{
+            form.username(class_="form-control"
+            )
+            }}<br
+          />
+        </div>
+        <div>
+          <input
+            class="loginline"
+            type="password"
+            placeholder="Пароль"
+            {{
+            form.password(class_="form-control"
+            )
+            }}<br
+          />
+        </div>
+        <div>
+          <input
+            class="loginline"
+            type="password"
+            placeholder="Подтверждение пароля"
+            {{
+            form.confirm_password(class_="form-control"
+            )
+            }}<br
+          />
+        </div>
+        <br />
+        <button class="accept" type="submit">Вход</button>
+      </form>
     </div>
-    <div class="menu">
-      <div class="mainpagebtn btn">
-        <a class="but" href="{{ url_for('index') }}"></a>
-      </div>
-      <div class="sprav btn">
-        <a class="but" href="{{ url_for('spravka') }}"></a>
-      </div>
-      <div class="logs btn">
-        <a class="but" href="{{ url_for('logs') }}"></a>
-      </div>
-      <div class="users btn">
-        <a class="but" href="{{ url_for('users') }}"></a>
-      </div>
-      <div class="reg btn">
-        <a class="but" href="{{ url_for('register') }}"></a>
-      </div>
-    </div>
-  </header>
-  <div class="login-container">
-    <form class="loginbox" method="POST" action="{{ url_for('register') }}">
-      {{ form.hidden_tag() }}
-      <div>
-        <input class="loginline" type="text" placeholder="Логин" {{ form.username(class_="form-control" ) }}<br>
-      </div>
-      <div>
-        <input class="loginline" type="password" placeholder="Пароль" {{ form.password(class_="form-control" ) }}<br>
-      </div>
-      <div>
-        <input class="loginline" type="password" placeholder="Подтверждение пароля" {{
-          form.confirm_password(class_="form-control" ) }}<br>
-      </div>
-      <br>
-      <button type="submit">Готово</button>
-    </form>
-  </div>
-</body>
-
+  </body>
 </html>
