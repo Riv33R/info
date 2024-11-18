@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <button style="margin: 0 0 1rem 0; float: right;" id="theme-toggle">Переключить тему</button>
+  <form "margin: 0 1rem 0 0; float: right;" method="GET" action="/">
+    <button type="submit" class="button" href="{{ url_for('index') }}"> Главная </button>
+  </form>
+  <div class="login-container">
+    <h1>Регистрация</h1>
+    <form class="loginbox" method="POST" action="{{ url_for('register') }}">
+      {{ form.hidden_tag() }}
+      <div>
+        <!-- <label for="username">Username</label><br>
+                #{{ form.username(class_="form-control") }} -->
+        <input class="loginline" type="text" placeholder="Логин" {{ form.username(class_="form-control" ) }}<br>
+      </div>
+      <div>
+        <!--<label for="password">Password</label><br>
+                {{ form.password(class_="form-control") }}-->
+        <input class="loginline" type="password" placeholder="Пароль" {{ form.password(class_="form-control" ) }}<br>
+      </div>
+      <div>
+        <!--<label for="confirm_password">Confirm Password</label><br>
+                {{ form.confirm_password(class_="form-control") }}-->
+        <input class="loginline" type="password" placeholder="Подтверждение пароля" {{
+          form.confirm_password(class_="form-control" ) }}<br>
+      </div>
+      <br>
+      <button type="submit">Готово</button>
+    </form>
+  </div>
+  <script>
+    // При загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      // Проверяем, есть ли сохранённая тема
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        body.classList.add(savedTheme);
+      }
+
+      // Переключение темы
+      themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          localStorage.setItem('theme', ''); // Очищаем тему
+        } else {
+          body.classList.add('dark-theme');
+          localStorage.setItem('theme', 'dark-theme'); // Сохраняем тёмную тему
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
