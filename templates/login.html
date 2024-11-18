@@ -35,12 +35,13 @@
         </div>
     </header>
     <div class="login-container">
-        <h1>Вход</h1>
-        <form method="POST" action="/login">
+
+        <form class="loginbox" method="POST" action="/login">
+            <h1 style="text-align: center;">Вход</h1>
             {{ form.hidden_tag() }}
             <input class="loginline" type="text" placeholder="Логин" {{ form.username }}<br>
             <input class="loginline" type="password" placeholder="Пароль" {{ form.password }}<br>
-            <button type="submit" {{ form.submit() }} Вход</button>
+            <button class="accept" type="submit" {{ form.submit() }} Вход</button>
         </form>
     </div>
 </body>
