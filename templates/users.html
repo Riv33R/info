@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="" />
+  <title>Пользователи</title>
+</head>
+
+<body>
+  <h1>Пользователи</h1>
+  <div>
+    <form "margin: 0 1rem 0 0; float: right;" method="post" action="/logout">
+      <button type="submit" class="logout-button"> Выход </button>
+    </form>
+    <form method="POST" action="/register">
+      <button style="margin: 0 1rem 0 0; float: right;" href="{{ url_for('register') }}">Добавить пользователя</button>
+    </form>
+    <button style="margin: 0 1rem 0 0; float: right;" id="theme-toggle">Переключить тему</button>
+    <form "margin: 0 1rem 0 0; float: right;" method="GET" action="/">
+      <button type="submit" class="button" href="{{ url_for('index') }}"> Главная </button>
+    </form>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Пользователь</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for user in users %}
+        <tr>
+          <td>{{ user }}</td>
+          <td>
+            <form action="{{ url_for('delete_user', username=user) }}" method="post" style="display:inline;">
+              <button type="submit">Удалить</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+  <script>
+    // При загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      // Проверяем, есть ли сохранённая тема
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        body.classList.add(savedTheme);
+      }
+
+      // Переключение темы
+      themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          localStorage.setItem('theme', ''); // Очищаем тему
+        } else {
+          body.classList.add('dark-theme');
+          localStorage.setItem('theme', 'dark-theme'); // Сохраняем тёмную тему
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
