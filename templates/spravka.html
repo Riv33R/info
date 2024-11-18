@@ -46,7 +46,6 @@
             <tbody>
                 {% for record in records %}
                 {% if record['name'] and record['jobtitle'] and record['phone'] and record['phone'] is not none %}
-
                 <tr>
                     <td>{{ record['name'] }}</td>
                     <td>{{ record['jobtitle'] }}</td>
@@ -54,7 +53,6 @@
                                 src="https://www.svgrepo.com/show/499799/telephone-number.svg" alt="phone"></a> {{
                         '{:.0f}'.format(record['phone'] | float) }}</td>
                 </tr>
-
                 {% endif %}
                 {% endfor %}
             </tbody>
