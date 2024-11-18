@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499799/telephone-number.svg">
+    <script src="/static/script.js"></script>
+    <title>Справочник</title>
+</head>
+
+<body>
+    <header>
+        <div class="titletop">
+            <h1>Портал</h1>
+            <h3>МОУ "ДСШ" № 1</h3>
+        </div>
+        <div class="menu">
+            <div class="mainpagebtn btn">
+                <a class="but" href="{{ url_for('index') }}"></a>
+            </div>
+            <div class="sprav btn">
+                <a class="but" href="{{ url_for('spravka') }}"></a>
+            </div>
+            <div class="logs btn">
+                <a class="but" href="{{ url_for('logs') }}"></a>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>
