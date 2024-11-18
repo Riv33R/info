@@ -4,13 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="">
-  <link rel="stylesheet" href="" />
+  <link rel="shortcut icon" href="https://www.svgrepo.com/show/499763/group.svg">
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="/static/script.js"></script>
   <title>Пользователи</title>
 </head>
 
 <body>
-  <h1>Пользователи</h1>
+  <header>
+    <div class="titletop">
+      <h1>Портал</h1>
+      <h3>МОУ "ДСШ" № 1</h3>
+    </div>
+    <div class="menu">
+      <div class="mainpagebtn btn">
+        <a class="but" href="{{ url_for('index') }}"></a>
+      </div>
+      <div class="sprav btn">
+        <a class="but" href="{{ url_for('spravka') }}"></a>
+      </div>
+      <div class="logs btn">
+        <a class="but" href="{{ url_for('logs') }}"></a>
+      </div>
+      <div class="users btn">
+        <a class="but" href="{{ url_for('users') }}"></a>
+      </div>
+      <div class="reg btn">
+        <a class="but" href="{{ url_for('register') }}"></a>
+      </div>
+    </div>
+  </header>
   <div>
     <form "margin: 0 1rem 0 0; float: right;" method="post" action="/logout">
       <button type="submit" class="logout-button"> Выход </button>
@@ -23,7 +46,7 @@
       <button type="submit" class="button" href="{{ url_for('index') }}"> Главная </button>
     </form>
   </div>
-  <div>
+  <div class="tabl">
     <table>
       <thead>
         <tr>
@@ -32,13 +55,12 @@
         </tr>
       </thead>
       <tbody>
-
         {% for user in users %}
         <tr>
           <td>{{ user }}</td>
           <td>
             <form action="{{ url_for('delete_user', username=user) }}" method="post" style="display:inline;">
-              <button type="submit">Удалить</button>
+              <button>Удалить</button>
             </form>
           </td>
         </tr>
@@ -47,30 +69,6 @@
 
     </table>
   </div>
-  <script>
-    // При загрузке страницы
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-
-      // Проверяем, есть ли сохранённая тема
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        body.classList.add(savedTheme);
-      }
-
-      // Переключение темы
-      themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-          body.classList.remove('dark-theme');
-          localStorage.setItem('theme', ''); // Очищаем тему
-        } else {
-          body.classList.add('dark-theme');
-          localStorage.setItem('theme', 'dark-theme'); // Сохраняем тёмную тему
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
