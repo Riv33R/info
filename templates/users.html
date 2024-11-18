@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
@@ -32,20 +32,11 @@
       <div class="reg btn">
         <a class="but" href="{{ url_for('register') }}"></a>
       </div>
+      <div class="logout btn">
+        <a href="#" class="but" onclick="logout()"></a>
+      </div>
     </div>
   </header>
-  <div>
-    <form "margin: 0 1rem 0 0; float: right;" method="post" action="/logout">
-      <button type="submit" class="logout-button"> Выход </button>
-    </form>
-    <form method="POST" action="/register">
-      <button style="margin: 0 1rem 0 0; float: right;" href="{{ url_for('register') }}">Добавить пользователя</button>
-    </form>
-    <button style="margin: 0 1rem 0 0; float: right;" id="theme-toggle">Переключить тему</button>
-    <form "margin: 0 1rem 0 0; float: right;" method="GET" action="/">
-      <button type="submit" class="button" href="{{ url_for('index') }}"> Главная </button>
-    </form>
-  </div>
   <div class="tabl">
     <table>
       <thead>
