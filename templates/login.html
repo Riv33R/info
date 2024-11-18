@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499807/home-page.svg">
     <script src="/static/script.js"></script>
-    <title>Портал</title>
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499764/user.svg">
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Вход</title>
 </head>
 
 <body>
@@ -37,6 +37,16 @@
             </div>
         </div>
     </header>
+    <div class="login-container">
+
+        <form class="loginbox" method="POST" action="/login">
+            <h1 style="text-align: center;">Вход</h1>
+            {{ form.hidden_tag() }}
+            <input class="loginline" type="text" placeholder="Логин" {{ form.username }}<br>
+            <input class="loginline" type="password" placeholder="Пароль" {{ form.password }}<br>
+            <button class="accept" type="submit" {{ form.submit() }} Вход</button>
+        </form>
+    </div>
 </body>
 
 </html>

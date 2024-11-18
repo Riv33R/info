@@ -111,7 +111,76 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+.users {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499763/group.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.reg {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499759/edit.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+.logout {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499784/shutdown.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.loginbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    max-width: 300px;
+    margin: 2rem auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #333;
+}
+
+.loginline {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+
+.accept {
+    margin: 0 auto;
+    max-width: 100px;
+    background-color: #10b9c2;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: 0.5s;
+}
+
+.accept:hover {
+    background-color: #0c969c;
+    box-shadow: 2px 2px 3px #333;
+}
+
+.cntr {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width: 645px) {
     .tabl {

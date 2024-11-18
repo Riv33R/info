@@ -19,3 +19,36 @@ document.addEventListener("DOMContentLoaded", () => {
     // Перемещаем отсортированные строки обратно в `<tbody>`
     rows.forEach(row => tbody.appendChild(row));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Проверяем, есть ли сохранённая тема
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      body.classList.add(savedTheme);
+    }
+
+    // Переключение темы
+    themeToggle.addEventListener("click", () => {
+      if (body.classList.contains("dark-theme")) {
+        body.classList.remove("dark-theme");
+        localStorage.setItem("theme", ""); // Очищаем тему
+      } else {
+        body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark-theme"); // Сохраняем тёмную тему
+      }
+    });
+  });
+
+  function logout() {
+    fetch('/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => {
+      window.location.href = '/';
+    }).catch(err => console.error('Ошибка при выходе:', err));
+  }
