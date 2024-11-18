@@ -4,32 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://www.svgrepo.com/show/499759/edit.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/script.js"></script>
   <title>Регистрация</title>
-  <link rel="stylesheet" href="">
 </head>
 
 <body>
-  <button style="margin: 0 0 1rem 0; float: right;" id="theme-toggle">Переключить тему</button>
-  <form "margin: 0 1rem 0 0; float: right;" method="GET" action="/">
-    <button type="submit" class="button" href="{{ url_for('index') }}"> Главная </button>
-  </form>
+  <header>
+    <div class="titletop">
+      <h1>Портал</h1>
+      <h3>МОУ "ДСШ" № 1</h3>
+    </div>
+    <div class="menu">
+      <div class="mainpagebtn btn">
+        <a class="but" href="{{ url_for('index') }}"></a>
+      </div>
+      <div class="sprav btn">
+        <a class="but" href="{{ url_for('spravka') }}"></a>
+      </div>
+      <div class="logs btn">
+        <a class="but" href="{{ url_for('logs') }}"></a>
+      </div>
+      <div class="users btn">
+        <a class="but" href="{{ url_for('users') }}"></a>
+      </div>
+      <div class="reg btn">
+        <a class="but" href="{{ url_for('register') }}"></a>
+      </div>
+    </div>
+  </header>
   <div class="login-container">
-    <h1>Регистрация</h1>
     <form class="loginbox" method="POST" action="{{ url_for('register') }}">
       {{ form.hidden_tag() }}
       <div>
-        <!-- <label for="username">Username</label><br>
-                #{{ form.username(class_="form-control") }} -->
         <input class="loginline" type="text" placeholder="Логин" {{ form.username(class_="form-control" ) }}<br>
       </div>
       <div>
-        <!--<label for="password">Password</label><br>
-                {{ form.password(class_="form-control") }}-->
         <input class="loginline" type="password" placeholder="Пароль" {{ form.password(class_="form-control" ) }}<br>
       </div>
       <div>
-        <!--<label for="confirm_password">Confirm Password</label><br>
-                {{ form.confirm_password(class_="form-control") }}-->
         <input class="loginline" type="password" placeholder="Подтверждение пароля" {{
           form.confirm_password(class_="form-control" ) }}<br>
       </div>
@@ -37,30 +51,6 @@
       <button type="submit">Готово</button>
     </form>
   </div>
-  <script>
-    // При загрузке страницы
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-
-      // Проверяем, есть ли сохранённая тема
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        body.classList.add(savedTheme);
-      }
-
-      // Переключение темы
-      themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-          body.classList.remove('dark-theme');
-          localStorage.setItem('theme', ''); // Очищаем тему
-        } else {
-          body.classList.add('dark-theme');
-          localStorage.setItem('theme', 'dark-theme'); // Сохраняем тёмную тему
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
