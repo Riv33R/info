@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499799/telephone-number.svg">
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499789/preview.svg">
     <script src="/static/script.js"></script>
-    <title>Справочник</title>
+    <title>Логи</title>
 </head>
 
 <body>
@@ -26,8 +26,44 @@
             <div class="logs btn">
                 <a class="but" href="{{ url_for('logs') }}"></a>
             </div>
+            <div class="users btn">
+                <a class="but" href="{{ url_for('users') }}"></a>
+            </div>
+            <div class="reg btn">
+                <a class="but" href="{{ url_for('register') }}"></a>
+            </div>
         </div>
     </header>
+    <div>
+        <form method="POST" action="/">
+            <div style="float: inline-grid">
+                <input style="width: auto" type="text" name="search" placeholder="Поиск по имени ПК и пользователя" />
+                <button style="width: auto" type="submit">Поиск</button>
+            </div>
+        </form>
+    </div>
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Пользователь</th>
+                <th>Имя компьютера</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in results %}
+            <tr>
+                <td>{{ log['LogonTime'] }}</td>
+                <td>{{ log['UserName'] }}</td>
+                <td>{{ log['ComputerName'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="warning">Результатов не найдено</p>
+    {% endif %}
 </body>
 
 </html>
