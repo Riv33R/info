@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 import pandas as pd
 
-csvfile = "path to your data.csv"
+csvfile = "data.csv"
 
 app = Flask(__name__)
 
