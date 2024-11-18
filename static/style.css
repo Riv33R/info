@@ -26,6 +26,7 @@ html {
 
 td {
     border: 1px solid #333;
+    margin-bottom: 0.5rem;
     width: 100vh;
     height: 45px;
     border-radius: 5px;
