@@ -1,0 +1,27 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "hostRequirements": {
+      "cpus": 2
+
+    },
+    "portsAttributes": {
+      "5000": {
+        "label": "Application",
+        "onAutoForward": "openPreview"
+      }
+    },
+    "customizations": {
+      "codespaces": {
+        "openFiles": [
+          "templates/index.html"
+        ]
+      },
+      "vscode": {
+        "extensions": [
+          "ms-python.python"
+        ]
+      }
+    },
+    "forwardPorts": [5000]
+  }
+  
