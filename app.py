@@ -16,11 +16,15 @@ from flask_login import (
 )
 from flask_wtf import FlaskForm
 import csv
+import os
+
+
 
 csvfile = "data.csv"
 
 app = Flask(__name__)
 
+app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -174,14 +178,14 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/logs", methods=["GET", "POST"])
 @login_required
 def logs():
     results = []
     if request.method == "POST":
         username_or_pcname = request.form["search"]
         # Replace the following path with the path to your file
-        filepath = "/mnt/share/UserLogons.csv"
+        filepath = "logon.csv"
         results = read_csv_data(filepath, username_or_pcname)
     return render_template("logs.html", results=results)
 
