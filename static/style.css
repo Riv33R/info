@@ -130,6 +130,16 @@ td {
     background-repeat: no-repeat;
 }
 
+.logout {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499784/shutdown.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .loginbox {
     display: flex;
     flex-direction: column;
@@ -164,6 +174,12 @@ td {
 .accept:hover {
     background-color: #0c969c;
     box-shadow: 2px 2px 3px #333;
+}
+
+.cntr {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 645px) {
