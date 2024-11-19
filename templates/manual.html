@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.svgrepo.com/show/499763/group.svg">
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js"></script>
+    <title>Пользователи</title>
+</head>
+
+<body>
+    <header>
+        <div class="titletop">
+            <h1>Портал</h1>
+            <h3>МОУ "ДСШ" № 1</h3>
+        </div>
+        <div class="menu">
+            <div class="mainpagebtn btn">
+                <a class="but" href="{{ url_for('index') }}"></a>
+            </div>
+            <div class="sprav btn">
+                <a class="but" href="{{ url_for('spravka') }}"></a>
+            </div>
+            <div class="logs btn">
+                <a class="but" href="{{ url_for('logs') }}"></a>
+            </div>
+            <div class="users btn">
+                <a class="but" href="{{ url_for('users') }}"></a>
+            </div>
+            <div class="reg btn">
+                <a class="but" href="{{ url_for('register') }}"></a>
+            </div>
+            <div class="dwnld btn">
+                <a class="but" href="{{ url_for('manual') }}"></a>
+            </div>
+            <div class="logout btn">
+                <a href="#" class="but" onclick="logout()"></a>
+            </div>
+        </div>
+    </header>
+    <div class="cardboard">
+        <div class="card">
+            <h3>Сертификат WI-FI</h3>
+            <img src="https://www.svgrepo.com/show/499803/bookmark.svg" alt="Сертификат" width="100" height="100" />
+            <a href="/files/certnew.cer" class="dowload" download>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M5 20h14v-2H5v2zm7-18l-7 7h4v6h6v-6h4l-7-7z" />
+                </svg>
+                Скачать
+            </a>
+            <div class="tooltip">Это сертификат для подключения к WI-FI.</div>
+        </div>
+        <div class="card">
+            <h3>Инструкция</h3>
+            <img src="https://www.svgrepo.com/show/499771/notebook.svg" alt="Облако" width="100" height="100" />
+            <a href="/files/Инструкция.pdf" class="dowload" download>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M5 20h14v-2H5v2zm7-18l-7 7h4v6h6v-6h4l-7-7z" />
+                </svg>
+                Скачать
+            </a>
+            <div class="tooltip">Инструкция для настройки подключения к WI-FI.</div>
+        </div>
+        <div class="card">
+            <h3>Nextcloud клиент</h3>
+            <img src="https://www.svgrepo.com/show/499790/upload.svg" alt="Облако" width="100" height="100" />
+            <a href="/files/Nextcloud-3.14.2-x64.msi" class="dowload" download>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M5 20h14v-2H5v2zm7-18l-7 7h4v6h6v-6h4l-7-7z" />
+                </svg>
+                Скачать
+            </a>
+            <div class="tooltip">Приложение клиент, для подключения сетевого диска на личном компьютере.</div>
+        </div>
+    </div>
+    <br />
+</body>
+
+</html>
