@@ -6,6 +6,8 @@ html {
 
 header {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -294,6 +296,21 @@ td {
 }
 
 @media screen and (max-width: 645px) {
+
+    header {
+        max-width: 380px;
+    }
+
+    .menu {
+        margin-top: 1rem;
+    }
+
+    .titletop {
+        border-collapse: collapse;
+        text-align: center;
+        width: 200px;
+    }
+
     .tabl {
         margin: 1rem 1rem 0 1rem;
         font-size: x-small;
