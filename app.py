@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import pandas as pd
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
@@ -37,6 +37,15 @@ class User(UserMixin):
 def index():
 
     return render_template('index.html')
+
+@app.route('/manual', methods=["GET", "POST"])
+def manual():
+
+    return render_template('manual.html')
+
+@app.route('/files/<path:filename>')
+def files(filename):
+    return send_from_directory('files', filename)
 
 @app.route('/spravka', methods=["GET", "POST"])
 def spravka():
