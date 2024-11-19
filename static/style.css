@@ -1,5 +1,5 @@
 html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     background-color: #fff;
 }
@@ -52,13 +52,9 @@ td {
 
 .sortable {
     pointer-events: auto;
-    /* Активирует клики для заголовков */
     cursor: pointer;
-    /* Добавляет курсор указателя */
     background-color: #dedede;
-    /* Легкий фон для визуализации */
     user-select: none;
-    /* Отключает выделение текста */
     border-radius: 5px;
 }
 
@@ -111,6 +107,7 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .users {
     pointer-events: all !important;
     width: 30px;
@@ -120,11 +117,22 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .reg {
     pointer-events: all !important;
     width: 30px;
     height: 30px;
     background: url(https://www.svgrepo.com/show/499759/edit.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.dwnld {
+    pointer-events: all !important;
+    width: 30px;
+    height: 30px;
+    background: url(https://www.svgrepo.com/show/499788/download.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -169,6 +177,7 @@ td {
     border-radius: 5px;
     padding: 0.5rem;
     transition: 0.5s;
+    pointer-events: all;
 }
 
 .accept:hover {
@@ -180,6 +189,108 @@ td {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
+}
+
+.mainphoto {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.mainphotosize {
+    max-width: 70%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #333;
+}
+
+.cardboard {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    position: relative; /* Для позиционирования подсказки */
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 5px #348;
+    transition: box-shadow 0.2s cubic-bezier(0, 1.07, 0.48, 0.74);
+    cursor: help;
+}
+
+.card:hover {
+    box-shadow: 4px 4px 10px #348;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -31%; /* Расположение подсказки над карточкой */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    /* Задаем отступ от карточки */
+    margin-bottom: 8px;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: -100%; /* Расположение стрелки под подсказкой */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.card:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dowload {
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4caf50; /* Зеленый цвет фона */
+    color: white; /* Белый цвет текста */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dowload:hover {
+    background-color: #45a049; /* Темнее на наведении */
+}
+
+.dowload svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    fill: white; /* Цвет иконки */
+    transform: rotate(180deg);
 }
 
 @media screen and (max-width: 645px) {
@@ -197,5 +308,4 @@ td {
         width: 9px;
         height: 9px;
     }
-
 }
