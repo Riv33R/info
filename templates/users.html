@@ -26,43 +26,51 @@
       <div class="logs btn">
         <a class="but" href="{{ url_for('logs') }}"></a>
       </div>
+      {% if current_user.is_authenticated and current_user.role == 'admin' %}
       <div class="users btn">
         <a class="but" href="{{ url_for('users') }}"></a>
       </div>
       <div class="reg btn">
         <a class="but" href="{{ url_for('register') }}"></a>
       </div>
+      {% endif %}
       <div class="dwnld btn">
         <a class="but" href="{{ url_for('manual') }}"></a>
-    </div>
+      </div>
       <div class="logout btn">
         <a href="#" class="but" onclick="logout()"></a>
       </div>
     </div>
   </header>
-  <div class="tabl">
-    <table>
-      <thead>
-        <tr>
-          <th>Пользователь</th>
-          <th>Действия</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for user in users %}
-        <tr>
-          <td>{{ user }}</td>
-          <td>
-            <form action="{{ url_for('delete_user', username=user) }}" method="post">
-              <button class="accept">Удалить</button>
-            </form>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-
-    </table>
-  </div>
+<div class="tabl">
+  <table>
+    <thead>
+      <tr>
+        <th>Пользователь</th>
+        <th>Текущая роль</th>
+        <th>Изменить роль</th>
+        <th>Удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for username, role in users %}
+      <tr>
+        <td>{{ username }}</td>
+        <td>{{ role }}</td>
+        <td>
+          <form action="{{ url_for('change_role', username=username) }}" method="post">
+            <select name="role">
+              <option value="user" {% if role == "user" %}selected{% endif %}>User</option>
+              <option value="admin" {% if role == "admin" %}selected{% endif %}>Admin</option>
+            </select>
+            <button class="accept" type="submit">Изменить</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 </body>
 
 </html>
