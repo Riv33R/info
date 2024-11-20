@@ -89,7 +89,7 @@ td {
 .btn {
     margin-left: 1rem;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: box-shadow 0.2s cubic-bezier(0, 1.07, 0.48, 0.74);
 }
 
 .btn:hover {
@@ -188,7 +188,7 @@ td {
     padding: 0.5rem;
 }
 
-.accept {
+select {
     margin: 0 auto;
     max-width: 100px;
     background-color: #10b9c2;
@@ -198,9 +198,20 @@ td {
     pointer-events: all;
 }
 
+.accept {
+    margin: 0 auto;
+    max-width: 100px;
+    background-color: #10b9c2;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: 0.5s;
+    pointer-events: all;
+    transition: box-shadow 0.2s cubic-bezier(0, 1.07, 0.48, 0.74);
+}
+
 .accept:hover {
     background-color: #0c969c;
-    box-shadow: 2px 2px 3px #333;
+    box-shadow: 1px 1px 5px #333;
 }
 
 .cntr {
