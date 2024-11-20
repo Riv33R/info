@@ -26,15 +26,17 @@
       <div class="logs btn">
         <a class="but" href="{{ url_for('logs') }}"></a>
       </div>
+      {% if current_user.is_authenticated and current_user.role == 'admin' %}
       <div class="users btn">
         <a class="but" href="{{ url_for('users') }}"></a>
       </div>
       <div class="reg btn">
         <a class="but" href="{{ url_for('register') }}"></a>
       </div>
+      {% endif %}
       <div class="dwnld btn">
         <a class="but" href="{{ url_for('manual') }}"></a>
-    </div>
+      </div>
       <div class="logout btn">
         <a href="#" class="but" onclick="logout()"></a>
       </div>
@@ -55,7 +57,7 @@
           form.confirm_password(class_="form-control" ) }}<br />
       </div>
       <br />
-      <button class="accept" type="submit">Вход</button>
+      <button class="accept" type="submit">Готово</button>
     </form>
   </div>
 </body>
