@@ -28,12 +28,14 @@
             <div class="logs btn">
                 <a class="but" href="{{ url_for('logs') }}"></a>
             </div>
+            {% if current_user.is_authenticated and current_user.role == 'admin' %}
             <div class="users btn">
                 <a class="but" href="{{ url_for('users') }}"></a>
             </div>
             <div class="reg btn">
                 <a class="but" href="{{ url_for('register') }}"></a>
             </div>
+            {% endif %}
             <div class="dwnld btn">
                 <a class="but" href="{{ url_for('manual') }}"></a>
             </div>

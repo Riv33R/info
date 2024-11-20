@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import EqualTo, DataRequired
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+from functools import wraps
 from flask_login import (
     LoginManager,
     UserMixin,
@@ -21,6 +22,8 @@ import os
 
 
 csvfile = "data.csv"
+usersdb = "users.csv"
+logondb = "logon.csv"
 
 app = Flask(__name__)
 
@@ -30,8 +33,9 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 class User(UserMixin):
-    def __init__(self, id):
+    def __init__(self, id, role="user"):
         self.id = id
+        self.role = role
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -60,7 +64,15 @@ def spravka():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User(user_id)
+    try:
+        with open(usersdb, newline="") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row["username"] == user_id:
+                    return User(id=row["username"], role=row["role"])
+    except FileNotFoundError:
+        pass
+    return None
 
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
@@ -73,6 +85,13 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField("Register")
 
+def admin_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.role != "admin":
+            return redirect(url_for('login'))  # Перенаправляем на страницу входа
+        return func(*args, **kwargs)
+    return decorated_view
 	
 def read_csv_data(filepath, search_term):
     results = []
@@ -102,15 +121,15 @@ def read_csv_data(filepath, search_term):
     return results
 
 # Сохраняем пароль в файле как хэш, используя generate_password_hash
-def save_user_credentials(username, password):
+def save_user_credentials(username, password, role="user"):
     hashed_password = generate_password_hash(password)
-    with open("users.csv", "a", newline="") as csvfile:
+    with open(usersdb, "a", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow([username, hashed_password])
+        writer.writerow([username, hashed_password, role])
 
 # Проверяем правильность пароля, используя check_password_hash
 def verify_user_credentials(username, password):
-    with open("users.csv", newline="") as csvfile:
+    with open(usersdb, newline="") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             if row[0] == username:
@@ -119,19 +138,15 @@ def verify_user_credentials(username, password):
 
 @app.route("/register", methods=["GET", "POST"])
 @login_required
+@admin_required
 def register():
-    # Запрещаем доступ на страницу регистрации, если пользователь уже авторизован
-    #if current_user.is_authenticated:
-    #    return redirect(url_for('index'))
-
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        save_user_credentials(username, password)
-        #flash("Registration successful! You can now log in.", "success")
-        return redirect(url_for("login"))  # Перенаправляем на страницу входа после успешной регистрации
-    
+        role = "user"  # По умолчанию создаем пользователя с ролью "user"
+        save_user_credentials(username, password, role)
+        return redirect(url_for("login"))
     return render_template("register.html", form=form)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -151,30 +166,57 @@ def login():
 
 @app.route("/users", methods=["GET"])
 @login_required
+@admin_required
 def users():
     user_list = []
     try:
-        with open("users.csv", newline="") as csvfile:
-            reader = csv.reader(csvfile)
-            user_list = [row[0] for row in reader]  # Получаем список имен пользователей
+        with open(usersdb, newline="") as csvfile:
+            reader = csv.DictReader(csvfile, fieldnames=["username", "password", "role"])
+            user_list = [(row["username"], row["role"]) for row in reader]  # Извлекаем только имя и роль
     except FileNotFoundError:
         user_list = []
-
     return render_template("users.html", users=user_list)
 
+@app.route("/change_role/<username>", methods=["POST"])
+@login_required
+@admin_required
+def change_role(username):
+    new_role = request.form.get("role")
+    if new_role not in ["admin", "user"]:  # Ограничиваем список ролей
+        return "Недопустимая роль", 400
+
+    users = []
+    try:
+        with open(usersdb, newline="") as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] == username:
+                    row[2] = new_role  # Изменяем роль
+                users.append(row)
+    except FileNotFoundError:
+        return "Файл пользователей не найден", 404
+
+    # Перезаписываем файл с обновлённой ролью
+    with open(usersdb, "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(users)
+
+    return redirect(url_for("users"))
+
 @app.route("/delete_user/<username>", methods=["POST"])
+@login_required
 @login_required
 def delete_user(username):
     users = []
     try:
-        with open("users.csv", newline="") as csvfile:
+        with open(usersdb, newline="") as csvfile:
             reader = csv.reader(csvfile)
             users = [row for row in reader if row[0] != username]  # Убираем пользователя из списка
     except FileNotFoundError:
         pass
 
     # Сохраняем обновленный список пользователей
-    with open("users.csv", "w", newline="") as csvfile:
+    with open(usersdb, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(users)
 
@@ -189,12 +231,13 @@ def logout():
 
 @app.route("/logs", methods=["GET", "POST"])
 @login_required
+@admin_required
 def logs():
     results = []
     if request.method == "POST":
         username_or_pcname = request.form["search"]
         # Replace the following path with the path to your file
-        filepath = "logon.csv"
+        filepath = logondb
         results = read_csv_data(filepath, username_or_pcname)
     return render_template("logs.html", results=results)
 
