@@ -1,8 +1,8 @@
 import os
 import csv
 from datetime import datetime
-import pandas as pd
 
+import pandas as pd
 from flask import (
     Flask,
     render_template,
@@ -11,12 +11,7 @@ from flask import (
     url_for,
     send_from_directory,
 )
-from werkzeug.security import generate_password_hash, check_password_hash
-
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import EqualTo, DataRequired
-
 from flask_login import (
     LoginManager,
     UserMixin,
@@ -25,7 +20,9 @@ from flask_login import (
     logout_user,
     current_user,
 )
-
+from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import EqualTo, DataRequired
 from functools import wraps
 
 
